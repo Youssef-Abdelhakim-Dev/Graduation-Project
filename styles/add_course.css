@@ -1,0 +1,224 @@
+﻿/* ✅ Global Styles — GPU accelerated, responsive, fluid layout */
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #6c63ff, #ff6090);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: backgroundAnimation 6s ease-in-out infinite alternate;
+    will-change: background;
+    scroll-behavior: smooth;
+}
+
+@keyframes backgroundAnimation {
+    0% { background: linear-gradient(135deg, #6c63ff, #ff6090); }
+    100% { background: linear-gradient(135deg, rgb(20, 7, 118), #3a0ca3); }
+}
+
+/* ✅ Responsive grid for images */
+#image-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+}
+
+#image-preview img {
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+#image-preview img:hover {
+    transform: scale(1.05) translateZ(0);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ✅ Form Container */
+.form-container {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    padding: 2rem;
+    border: 2px solid #007bff;
+    animation: borderAnimation 3s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+    will-change: transform, border-color;
+}
+
+.form-container:hover {
+    transform: scale(1.02);
+}
+
+@keyframes borderAnimation {
+    0% { border-color: #007bff; }
+    100% { border-color: #1b4399; }
+}
+
+/* ✅ Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+    position: relative;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.form-group:hover {
+    transform: translateY(-2px);
+}
+
+.form-group label {
+    display: block;
+}
+
+/* Inputs, Select, Textarea */
+input,
+select,
+textarea {
+    width: 100%;
+    transition: border 0.3s, box-shadow 0.3s, transform 0.3s;
+    will-change: transform;
+  
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #00c3ff;
+    box-shadow: 0 0 8px rgba(0,195,255,0.4);
+    transform: scale(1.02);
+}
+
+/* ✅ Upload Button */
+#fileButton {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+    color: white;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    letter-spacing: 1px;
+}
+
+#fileButton:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(46, 139, 87, 0.6);
+}
+
+#fileButton:active {
+    transform: scale(0.95);
+}
+
+/* ✅ File and Video Previews */
+#file-preview, #video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.video-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.video-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.video-box video {
+    border-radius: 8px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ✅ Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5);
+}
+
+/* ✅ SweetAlert Enhancements */
+.swal-button {
+    background: linear-gradient(45deg, #00FF7F, #32CD32) !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+}
+
+.swal-button:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ Responsive Breakpoints */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.2rem;
+        width: 90%;
+    }
+
+    #image-preview img {
+        height: 120px;
+    }
+
+    .submit-btn, #fileButton {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start;
+        padding-top: 1rem;
+    }
+
+    .form-container {
+        border-radius: 12px;
+        width: 95%;
+    }
+
+    input, select, textarea {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    #image-preview {
+        grid-template-columns: 1fr 1fr;
+    }
+}

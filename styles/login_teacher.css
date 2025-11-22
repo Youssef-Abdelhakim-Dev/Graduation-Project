@@ -1,0 +1,124 @@
+/* --- Main Container --- */
+.form-container {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    font-family: "Segoe UI", sans-serif;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Heading --- */
+.form-container h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2d3748;
+}
+
+/* --- Fieldset --- */
+fieldset {
+    border: 2px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: 700;
+    color: #2b6cb0;
+    font-size: 17px;
+}
+
+/* --- Input Groups --- */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 15px;
+}
+
+/* --- Inputs --- */
+.input-group input {
+    padding: 12px;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.25);
+}
+
+/* --- Upload Button Section --- */
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+#fileName {
+    font-style: italic;
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border: none;
+    color: white;
+    padding: 13px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.25s ease;
+    position: relative;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,153,255,0.3);
+}
+
+.submit-btn:active {
+    transform: scale(0.96);
+}
+
+/* Loader visibility control (hidden by default) */
+#loader {
+    display: none;
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 20px;
+    }
+    .submit-btn {
+        font-size: 16px;
+    }
+}
+ 

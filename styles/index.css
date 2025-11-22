@@ -1,0 +1,682 @@
+       /* Scroll progress bar */
+       #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 6px;
+        background: linear-gradient(to right, #facc15, #4f46e5);
+        z-index: 50;
+        transition: width 0.25s ease-out;
+      }
+         /* Full-page section setup */
+    section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+    
+    
+    /* Sticky Navbar */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+    }
+    
+    nav.sticky {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    
+    nav .nav-link {
+        margin: 0 1rem;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    nav .nav-link.active {
+        color: #fbbf24;
+    }
+    
+    
+    
+    /* Content styling */
+    .content {
+        text-align: center;
+        color: white;
+        font-size: 3rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    /* Add animation class for active sections */
+    section.in-view .content {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    
+    /* Parallax effects */
+    section {
+        transform: translate3d(0, 0, 0);
+    }
+    
+    section.parallax {
+        transition: transform 0.2s ease-out;
+    }
+    
+    /* Apply parallax effect dynamically */
+    section.parallax.in-view {
+        transform: translateY(-20px);
+    }
+    
+    
+            .loading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 238, 255, 0.3);
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #0ef;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #F8FAFC;
+    
+            .dots {
+                animation: dotsAnimation 1.5s infinite;
+            }
+        }
+    
+        .progress-ring {
+            width: 60px;
+            height: 60px;
+            position: relative;
+    
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+    
+            circle {
+                fill: none;
+                stroke: #0ef;
+                stroke-width: 5;
+                stroke-dasharray: 0, 125;
+                stroke-linecap: round;
+                transition: stroke-dasharray 2.5s ease-in-out;
+            }
+        }
+    }
+    
+    /* Animations */
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    
+    @keyframes dotsAnimation {
+        0%, 100% { content: "."; }
+        33% { content: ".."; }
+        66% { content: "..."; }
+    }
+    
+       /* 🎨 Global Body Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #00C2A4, #0077B5);
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+        overflow-x: hidden;
+        position: relative;
+        z-index: 0;
+    }
+    
+    /* 🎨 Navigation Bar Styles */
+    nav {
+        background: rgba(0, 119, 181, 0.8);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 15px 0;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 3D Hover Effect on Nav Bar */
+    nav:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* 🎨 Navigation List Styles */
+    nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        transform: perspective(600px);
+    }
+    
+    /* 🎨 Navigation List Item Styles */
+    nav ul li {
+        position: relative;
+        transform: rotateY(0deg);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* 🎨 Navigation Link Styles */
+    .nav-link {
+        color: white;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 🎨 Icon Styling Inside Navigation Link */
+    .nav-link i {
+        margin-right: 10px;
+    }
+    
+    /* 🎨 Hover Effects on Navigation Links (3D Hover) */
+    .nav-link:hover {
+        background: linear-gradient(135deg, #0077B5, #00C2A4);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        transform: translateY(-5px) rotateY(10deg);
+        z-index: 1;
+    }
+    
+    /* 🎨 Navigation Link Active State (more 3D feel) */
+    .nav-link:active {
+        transform: scale(1) rotateY(0deg);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* 🎨 Smooth Transition for All Links */
+    .nav-link {
+        transition: all 0.3s ease;
+    }
+    
+    /* 🎨 Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+        body {
+            background: linear-gradient(135deg, #0077B5, #00C2A4); /* Change gradient for smaller screens */
+        }
+    
+        nav {
+            padding: 20px 0;
+        }
+    
+        nav ul {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+    
+        .nav-link {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+    
+        .nav-link:hover {
+            transform: translateY(-3px) rotateY(5deg);
+        }
+    }
+    
+    
+        .sign-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    
+            &:hover {
+                background: rgba(255, 255, 255, 0.4);
+                transform: scale(1.1);
+            }
+        }
+    
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            gap: 50px;
+    
+            .content {
+                flex: 1;
+                padding-right: 40px;
+            }
+    
+            .image-container {
+                flex: 0 0 40%;
+                max-width: 40%;
+    
+                img {
+                    width: 100%;
+                    border-radius: 15px;
+                    transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+                    &:hover {
+                        border: 4px solid white;
+                        transform: rotate(3deg) scale(1.1);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+        }
+    
+        .card {
+        background: linear-gradient(145deg, #e3e3e3, #ffffff);
+        color: #333;
+        margin: 20px;
+        padding: 30px;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
+                    -10px -10px 20px rgba(255, 255, 255, 0.5);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+                    background 0.5s ease-in-out;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        &::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+            transform: rotate(45deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+    
+        /* Add border animation */
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #0ef, #ff00c3, #0ef) border-box;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+            z-index: 2;
+            transition: opacity 0.4s;
+            opacity: 0;
+        }
+        }
+    
+       /* 🎨 Footer Styling */
+    footer {
+        background: linear-gradient(135deg, #1E3A8A, #2563EB);
+        color: #F8FAFC;
+        padding: 60px 0;
+        text-align: center;
+        box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* 🎨 Footer Content Section */
+    .footer-content {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding: 20px;
+        z-index: 2;
+    
+        /* Box shadow to create floating effect */
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.1);
+        transform: translateY(-30px);
+        transition: transform 0.3s ease-in-out;
+    
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+    
+    /* 🎨 Footer Sections Styling */
+    .footer-section {
+        flex: 1;
+        padding: 20px;
+        min-width: 250px;
+        transition: transform 0.3s ease-in-out;
+    
+        &:hover {
+            transform: scale(1.05);
+        }
+    
+        /* Styling for titles */
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            position: relative;
+            font-weight: 600;
+    
+            &::after {
+                content: "";
+                width: 70px;
+                height: 4px;
+                background: #FACC15;
+                display: block;
+                margin: 8px auto;
+            }
+        }
+    }
+    
+    /* 🎨 Links Section */
+    .footer-section.links ul {
+        list-style: none;
+        padding: 0;
+    
+        li {
+            margin-bottom: 12px;
+            transition: transform 0.3s ease-in-out;
+    
+            a {
+                text-decoration: none;
+                color: #F8FAFC;
+                font-size: 18px;
+                transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+                
+                &:hover {
+                    color: #FACC15;
+                    transform: translateX(10px);
+                }
+            }
+    
+            &:hover {
+                transform: translateX(5px);
+            }
+        }
+    }
+    
+    /* 🎨 Contact Section */
+    .footer-section.contact p {
+        margin: 8px 0;
+        font-size: 16px;
+    
+        i {
+            margin-right: 8px;
+            color: #FACC15;
+        }
+    }
+    
+    /* 🎨 Social Icons Section */
+    .footer-section.about .social-icons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        a {
+            color: white;
+            font-size: 26px;
+            margin: 0 15px;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    
+            &:hover {
+                color: #FACC15;
+                transform: scale(1.3);
+            }
+        }
+    }
+    
+    /* 🎨 Footer Bottom */
+    .footer-bottom {
+        background: #172554;
+        padding: 20px;
+        font-size: 14px;
+        margin-top: 30px;
+        color: #A1A1AA;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+    
+    /* 🎨 Responsive Design */
+    @media (max-width: 1024px) {
+        .footer-content {
+            padding: 20px;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+    
+        .footer-section {
+            padding: 15px;
+            min-width: 220px;
+        }
+    
+        .footer-bottom {
+            font-size: 12px;
+        }
+    }
+    
+    /* 🎨 Grid Layout */
+    .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-top: 40px;
+        padding: 20px;
+    }
+    
+    /* 🎨 Quote Styling */
+    .quote {
+        font-style: italic;
+        font-size: 1.8rem;
+        text-align: center;
+        margin-top: 40px;
+        color: #FACC15;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .quote:hover {
+        transform: scale(1.05);
+    }
+    
+    /* 🎨 Footer's 3D Depth Effect */
+    footer:hover {
+        box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+        transform: translateY(-5px);
+    }
+    
+    /* 🎨 Hover Effect for Entire Footer Content */
+    .footer-content:hover {
+        box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
+        transform: translateY(0);
+    }
+    
+    
+       
+    /* Animations */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    /* Glassy popup style */
+    .swal2-popup {
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    /* Container */
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    /* Spinner with glowing neon ring */
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 6px solid rgba(255,255,255,0.1);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(56,189,248,0.5);
+    }
+    
+    /* Skeleton shimmer bar */
+    .skeleton-loader {
+      width: 200px;
+      height: 10px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite linear;
+    }
+    
+    /* Circular progress ring */
+    .progress-ring svg {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .progress-ring circle {
+      fill: none;
+      stroke: url(#gradient);
+      stroke-width: 5;
+      stroke-dasharray: 0, 125;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      opacity: 0.8;
+    }
+    
+    /* Text */
+    .loading-text {
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      color: #e2e8f0;
+    }
+    
+    /* Animations */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(56,189,248,0.5); }
+      50% { box-shadow: 0 0 30px rgba(56,189,248,1); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    /* Styling for the scroll progress bar */
+    /* 🎨 Scroll Progress Bar Container */
+    .progress-bar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.3);
+        z-index: 9999;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+    
+    /* 🎨 Scroll Progress Bar */
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #fbbf24;
+        border-radius: 5px;
+        transition: width 0.2s ease-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 🎨 Interactive Hover Effects on Progress Bar */
+    .progress-bar-container:hover .progress-bar {
+        background-color: #ff8c00;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transform: scaleX(1.1);
+    }
+    
+    /* 🎨 Gradient Fill for Progress Bar */
+    @keyframes gradientAnimation {
+        0% {
+            background: linear-gradient(90deg, #ff8c00, #fbbf24);
+        }
+        50% {
+            background: linear-gradient(90deg, #fbbf24, #34d399);
+        }
+        100% {
+            background: linear-gradient(90deg, #34d399, #ff8c00);
+        }
+    }
+    /* Enhancements for smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }

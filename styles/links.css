@@ -1,0 +1,273 @@
+﻿/* General Page Styles */
+/* General Page Styles */
+/* Global Reset */
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(-45deg, rgb(20, 20, 20), rgb(50, 50, 50), rgb(80, 80, 80), rgb(30, 30, 30));
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease-in-out infinite;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-y: auto;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.95) 80%);
+        z-index: -1;
+    }
+}
+
+/* Animated Background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-top: 40.25%; /* 16:9 aspect ratio */
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        border: none;
+    }
+
+    .plyr__video-embed {
+        width: 100%;
+        height: 50vh; /* Full screen height */
+    }
+}
+
+/* Checkbox Container */
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #252525;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ff004c, #ff8a00, #ff004c);
+    background-size: 200% 200%;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 15px rgba(255, 0, 76, 0.4),
+        0 6px 20px rgba(255, 138, 0, 0.3),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    text-shadow: 0 0 4px rgba(255,255,255,0.6);
+}
+
+button[type="submit"]:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 20px rgba(255, 0, 76, 0.6),
+        0 8px 25px rgba(255, 138, 0, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 
+        0 3px 8px rgba(255, 0, 76, 0.3),
+        0 4px 12px rgba(255, 138, 0, 0.2),
+        inset 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* ---------------------------------------------------
+   Custom Neon Checkbox – 3D + Gradient + Glow
+--------------------------------------------------- */
+.custom-checkbox {
+    display: none;
+}
+
+/* Label styling for custom checkbox */
+.custom-checkbox + label {
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #eee;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+/* The box */
+.custom-checkbox + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ff004c;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #2d2d2d, #3b3b3b);
+    box-shadow: 
+        4px 4px 10px #1a1a1a,
+        -4px -4px 10px #484848;
+    transition: all 0.3s ease;
+}
+
+/* Hover glow effect */
+.custom-checkbox + label:hover::before {
+    box-shadow:
+        0 0 12px #ff004c,
+        0 0 20px #ff8a00,
+        inset 0 0 6px rgba(255,255,255,0.2);
+}
+
+/* Checked state */
+.custom-checkbox:checked + label::before {
+    background: linear-gradient(135deg, #ff004c, #ff8a00, #ff004c);
+    border-color: #ff8a00;
+    box-shadow:
+        0 0 12px #ff004c,
+        0 0 20px #ff8a00,
+        inset 0 0 6px rgba(255,255,255,0.4);
+}
+
+/* Checkmark */
+.custom-checkbox:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(255,255,255,0.8);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Unchecked state */
+.custom-checkbox + label::after {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Loading Spinner */
+.loading-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.loading-spinner {
+    border: 4px solid transparent;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Video Card */
+.video-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    text-align: center;
+    position: relative;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-card {
+        background: #252525;
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    }
+}
+.year-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+
+    /* Nested styles */
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    &:hover {
+      border-color: #666;
+    }
+
+    &::placeholder {
+      color: #999;
+      opacity: 0.5;
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+  }
+

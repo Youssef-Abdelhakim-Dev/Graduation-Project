@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block content %}
+<section class="courses-section">
+  {% if courses is not empty %}
+    <div class="courses-grid">
+      {% for course in courses %}
+        {% include "course_card.html.twig" with { course: course } %}
+      {% endfor %}
+    </div>
+  {% else %}
+    {% include "no_courses.html.twig" %}
+  {% endif %}
+
+  {% include "pagination.html.twig" %}
+</section>
+{% endblock %}

@@ -1,0 +1,266 @@
+﻿/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+.question-block {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    /* Use CSS Variables for consistent spacing and sizing */
+    --container-padding: 20px;
+    --border-radius: 10px;
+}
+
+.container h2 {
+    text-align: center;
+    color: #0056b3;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: var(--container-padding); /* Use the variable */
+}
+
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--container-padding); /* Use the variable */
+    overflow: hidden;
+    border-radius: var(--border-radius); /* Use the variable */
+}
+
+.container table th {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    position: relative; /* For the sort icon */
+    cursor: pointer;
+}
+
+.container table th:hover {
+    background-color: #0069d9;
+}
+
+.container table th::after {
+    content: ""; /* Empty content, the icon is added as background */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.6em;
+    height: 0.6em;
+    border-top: 0.15em solid white;
+    border-right: 0.15em solid white;
+    transform: translateY(-50%) rotate(135deg);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.container table th.ascending::after {
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+.container table th.descending::after {
+    transform: translateY(-50%) rotate(-225deg);
+}
+
+
+.container table td {
+    padding: 12px;
+    background: #f8f9fa;
+    transition: background 0.3s;
+}
+
+.container table td:hover {
+    background: #e2e6ea;
+}
+
+.container .expand-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Improved hover effect */
+    --hover-darken: 0.1;  /* Using a variable for the amount of color change */
+}
+
+.container .expand-btn:hover {
+    background: color-mix(in srgb, #28a745, black var(--hover-darken));
+    transform: translateY(-2px);
+}
+
+
+.container .questions-container {
+    display: none;
+    padding: 15px;
+    background: rgba(0, 123, 255, 0.1);
+    border-left: 4px solid #007bff;
+    animation: slideDown 0.5s ease-in-out;
+    margin-top: 10px; /* Add space between button and container */
+}
+
+.container .questions-container.expanded {
+    display: block;
+}
+
+
+.container .questions-container .question {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    /* Added subtle box shadow to questions */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #ccc;
+    margin: 15px 0;
+}
+
+.loading,
+.error,
+.success {
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.loading {
+    color: #007bff;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.timer {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .container table th,
+    .container table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .container .expand-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+.exam-btn {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    position: relative; /* For the ripple effect */
+    overflow: hidden; /* Clip the ripple */
+}
+
+.exam-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #003d80);
+    transform: scale(1.05);
+}
+
+.exam-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.exam-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px #007bff;
+}
+
+/* Disabled state */
+.exam-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Ripple effect */
+.exam-btn::before {
+    content: "";
+    position: absolute;
+    top: var(--y, 0);
+    left: var(--x, 0);
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transition: width 0.5s, height 0.5s, transform 0.5s, opacity 0.5s;
+    transform: translate(-50%, -50%);
+}
+
+.exam-btn:active::before {
+    opacity: 1;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%) scale(10);
+}
+

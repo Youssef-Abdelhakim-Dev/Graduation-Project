@@ -1,0 +1,100 @@
+﻿/* Textarea Styles */
+.textarea-style {
+    background: white;
+    min-height: 120px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(69, 3, 3, 0.1);
+    padding: 10px;
+    border: 2px solid transparent;
+    width: 100%;
+    resize: vertical;
+    outline: none;
+
+    &:focus {
+        border-image: linear-gradient(45deg, rgb(0, 0, 0), rgb(8, 46, 113)) 1;
+        border-width: 3px;
+        box-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+    }
+
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+        font-style: italic;
+    }
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Progress Bar */
+#progress-bar {
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+
+    .animate-shimmer {
+        animation: shimmer 1.5s infinite linear;
+    }
+}
+
+/* Background Gradient Animation */
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+}
+
+/* Keyframe Animations */
+@keyframes shimmer {
+    0% { opacity: 0.3; transform: translateX(-100%); }
+    50% { opacity: 0.6; transform: translateX(0); }
+    100% { opacity: 0.3; transform: translateX(100%); }
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Fade and Zoom */
+.animate-zoom-in {
+    animation: zoom-in 0.8s ease-out;
+}
+
+/* Button Glow Effect */
+.animate-glow {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+}
+
+/* Shake Effect */
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+

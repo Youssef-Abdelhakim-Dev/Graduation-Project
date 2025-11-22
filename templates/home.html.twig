@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+<!-- Home Section -->
+<section id="home" data-aos="fade-up" class="text-center py-20">
+    <h1 class="text-5xl font-bold"><i class="fas fa-graduation-cap text-yellow-400"></i> Welcome to Zagazig University: </h1>
+    <br>
+    <p class="text-lg mt-4 p-4 bg-gradient-to-r from-white/80 to-yellow-50/80 text-gray-800 border border-yellow-300 rounded-2xl shadow-lg backdrop-blur-md hover:scale-105 hover:shadow-xl transition-all duration-500 font-[500] tracking-wide leading-relaxed">
+        Innovating the Future of Education
+    </p>
+</section>
+
+<!-- About Section -->
+{% include 'sections/about.html.twig' %}
+
+<!-- Research Section -->
+{% include 'sections/research.html.twig' %}
+
+<!-- Courses Section -->
+{% include 'sections/courses.html.twig' with {'specializations': specializations} %}
+
+<!-- Performance Section -->
+{% include 'sections/performance.html.twig' %}
+
+{% endblock %}

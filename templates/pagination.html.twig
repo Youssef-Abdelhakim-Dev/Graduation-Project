@@ -1,0 +1,9 @@
+<nav class="pagination">
+  {% if page > 1 %}
+    <a href="?page={{ page - 1 }}&search={{ search }}&sort={{ sort }}">⬅ Previous</a>
+  {% endif %}
+  <span>Page {{ page }} of {{ totalPages }}</span>
+  {% if page < totalPages %}
+    <a href="?page={{ page + 1 }}&search={{ search }}&sort={{ sort }}">Next ➡</a>
+  {% endif %}
+</nav>

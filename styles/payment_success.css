@@ -1,0 +1,13 @@
+﻿/* Background gradient animation */
+body {
+  background: linear-gradient(270deg, #0f172a, #065f46, #0f766e, #14532d);
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+  font-family: 'Tajawal', sans-serif;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+

@@ -1,0 +1,11 @@
+﻿body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+        }
+
+        .dark body {
+            background-color: #1a202c;
+            color: #cbd5e0;
+        }
+

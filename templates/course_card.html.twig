@@ -1,0 +1,219 @@
+{# course_card.twig #}
+
+<style>
+:root {
+    --card-width: 300px;
+    --card-radius: 16px;
+    --primary-color: #007BFF;
+    --primary-hover: #0056b3;
+    --shadow-color: rgba(0,0,0,0.12);
+    --shadow-hover: rgba(0,0,0,0.18);
+    --bg-gradient: linear-gradient(135deg, #ffffff, #f0f4ff);
+}
+
+.courses-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    width: var(--card-width);
+    background: var(--bg-gradient);
+    border-radius: var(--card-radius);
+    box-shadow: 0 6px 18px var(--shadow-color);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px var(--shadow-hover);
+}
+
+.course-card figure {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 200px;
+    position: relative;
+}
+
+.course-card figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.course-card figure img.active {
+    display: block;
+    opacity: 1;
+}
+
+.course-card .image-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 0.75em;
+    padding: 3px 6px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.course-card .slider-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.course-card .slider-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.course-card .slider-dots span.active {
+    background: var(--primary-color);
+}
+
+.course-card .info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.course-card .info h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #222;
+}
+
+.course-card .info p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.course-card .info .btn {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.course-card .info .btn:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.course-card .info .btn i {
+    font-size: 1em;
+}
+
+@media (max-width: 1024px) { .course-card { width: 45%; } }
+@media (max-width: 768px) { .course-card { width: 100%; } }
+</style>
+
+<article class="course-card" role="region" aria-label="{{ course.title }}">
+    <figure>
+        {% set images = course.image is iterable ? course.image : course.image|json_decode %}
+        {% if images and images|length > 0 %}
+            {% for img in images %}
+                <img data-src="{{ img }}" alt="{{ course.title }} image {{ loop.index }}" class="{% if loop.first %}active{% endif %}" loading="lazy">
+            {% endfor %}
+            {% if images|length > 1 %}
+                <span class="image-badge">{{ images|length }} images</span>
+                <div class="slider-dots">
+                    {% for img in images %}
+                        <span class="{% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}"></span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% else %}
+            <img src="/science.jpg" alt="{{ course.title }} default image" class="active" loading="lazy">
+        {% endif %}
+    </figure>
+
+    <div class="info">
+        <h3>{{ course.title|default('Untitled Course') }}</h3>
+        {% set details = {
+            "Instructor": course.doctor_name,
+            "Price": course.price ~ ' LE',
+            "Department": course.department,
+            "Start": course.start_date
+        } %}
+        {% for label, value in details %}
+            {% if value %}
+                <p><strong>{{ label }}:</strong> {{ value }}</p>
+            {% endif %}
+        {% endfor %}
+
+       <button class="btn course-view-btn" data-title="{{ course.title|e('html_attr') }}" data-desc="{{ course.description|e('html_attr') }}">
+    <i class="fas fa-eye"></i> View
+</button>
+
+    </div>
+</article>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Lazy load images
+    document.querySelectorAll('.course-card figure img').forEach(img => {
+        const src = img.dataset.src;
+        if(src) img.src = src;
+    });
+
+    // Image slider functionality
+    document.querySelectorAll('.course-card').forEach(card => {
+        const imgs = card.querySelectorAll('figure img');
+        const dots = card.querySelectorAll('.slider-dots span');
+
+        if(imgs.length <= 1) return;
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.dataset.index);
+                imgs.forEach((img, i) => img.classList.toggle('active', i === index));
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+    });
+
+});
+
+document.querySelectorAll('.course-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const title = btn.dataset.title;
+        const desc = btn.dataset.desc;
+        showCourseDescription(desc, title);
+    });
+});
+</script>

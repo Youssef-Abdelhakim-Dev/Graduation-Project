@@ -1,0 +1,47 @@
+# Node dependencies
+/node_modules/
+package-lock.json
+
+# Composer dependencies
+/vendor/
+composer.lock
+
+# Build / distribution folders
+/dist/
+/build/
+/out/
+
+# Logs and temp files
+*.log
+*.cache
+*.tmp
+*.swp
+*.bak
+
+# Environment / config files
+.env
+.env.local
+.env.*.local
+
+# IDE / editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Coverage / test reports
+coverage/
+*.lcov
+
+# ✅ Keep image folders and assets
+!assets/
+!images/
+!uploads/
